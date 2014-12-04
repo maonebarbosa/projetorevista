@@ -1,0 +1,103 @@
+create table "Revista".Revista
+(	cnpjRevista	numeric(14),
+	nomeRevista	varchar(15),
+	endereco	varchar(50),
+
+	primary key (cnpjRevista)
+);
+
+
+
+
+cpfExpediente	numeric(11),
+	nomeExpediente	varchar(50),
+	funcao		varchar(20),
+	email		varchar(30),
+	endereco	varchar(50),
+
+	primary key (cpfExpediente)
+
+
+
+	idAssinante	varchar(20),
+	cpfAssinante	numeric(11),
+	nomeAssinante	varchar(50),
+	email		varchar(30),
+	endereco	varchar(50),
+
+	primary key (idAssinante
+
+
+Edicao
+(	idEdicao	varchar(10),
+	dataPublicacao	int,
+	tiragem		int,
+
+	primary key (idEdicao)
+
+
+
+Anunciante
+(	cnpjAnunciante	numeric(14),
+	razaoSocial	varchar(50),
+	email		varchar(30),
+
+	primary key (cnpjAnunciante)
+
+
+
+Autor 
+(	cpfAutor	numeric(11),
+	nomeAutor	varchar(50),
+	email		varchar(30),
+	endereco	varchar(50),
+
+
+	primary key (cpfAutor)
+
+
+
+Materia
+(	idMateria	varchar(30),
+	titulo		varchar(30),
+	palavraChave	varchar(30),
+	resumo		char,
+	categoria	varchar(30),
+	texto		char,
+
+	primary key (idMateria)
+);
+
+
+
+Assinatura
+(	cnpjRevista	numeric(14),
+	idAssinante	varchar(20),
+	cpfAssinante	numeric(11),
+	dataInicio	date,
+	dataFim		date,
+
+	primary key (dataInicio),
+	foreign key (cnpjRevista) references "Revista".Revista (cnpjRevista),
+	foreign key (idAssinante ,cpfAssinante) references "Revista".Assinante (idAssinante, cpfAssinante)
+
+);
+
+
+
+create table "Revista".Anuncio
+(	cnpjAnunciante	numeric(14),
+	idPublicacao	varchar(50),
+
+	primary key (idPublicacao),
+	foreign key (cnpjAnunciante) references "Revista".Anunciante (cnpjAnunciante)
+);
+
+
+create table "Revista".MateriaPorAutor
+(	idMateria	varchar(30),
+	cpfAutor	numeric(11),
+
+	foreign key (idMateria) references "Revista".Materia (idMateria),
+	foreign key (cpfAutor) references "Revista".Autor (cpfAutor)
+);
